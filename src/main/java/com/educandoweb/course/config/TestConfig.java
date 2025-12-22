@@ -56,7 +56,7 @@ public class TestConfig implements CommandLineRunner {
 		
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
-		Product p1 = new Product(null, "Harry Potter The Chamber of Secrets", "descricao 1",
+		Product p1 = new Product(null, "Harry Potter the Chamber of Secrets", "descricao 1",
 				50.50, "");
 		Product p2 = new Product(null, "Samsung Galaxy S20", "descricao 2",
 				7000.65, "");
@@ -66,6 +66,14 @@ public class TestConfig implements CommandLineRunner {
 				6570.89, "");
 		Product p5 = new Product(null, "The Collector - Darkside", "descricao 5",
 				76.23, "");
+		
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+		
+		p1.getCategories().add(cat2);
+		p2.getCategories().add(cat1);
+		p3.getCategories().add(cat1);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
 		
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 	}
