@@ -24,14 +24,35 @@
 			</thead>
 
 			<tbody>
+
+				<!-- INSERTED USERS -->
 				<tr th:each="user : ${users}">
 					<td th:text="${user.id}"></td>
 					<td th:text="${user.name}"></td>
 					<td th:text="${user.email}"></td>
 					<td th:text="${user.phone}"></td>
 				</tr>
+
+				<!-- CREATE ROW (inline) -->
+				<tr th:if="${showForm}">
+					<td>—</td>
+					<td><input form="createForm" type="text" name="name" required></td>
+					<td><input form="createForm" type="email" name="email" required></td>
+					<td><input form="createForm" type="text" name="phone" required></td>
+				</tr>
+
 			</tbody>
 		</table>
+
+		<div class="table-actions">
+			<a th:href="@{/users/new}" class="insert-link">+ Add</a>
+
+			<form th:if="${showForm}" id="createForm"
+			      th:action="@{/users/create}" method="post">
+				<button type="submit" class="btn-save">Save</button>
+			</form>
+		</div>
+
 
 	</div>
 

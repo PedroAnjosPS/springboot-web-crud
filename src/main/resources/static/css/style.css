@@ -61,9 +61,11 @@ tbody tr:hover {
 	cursor: pointer;
 }
 
-table, th, td {
-    border-left: none;
-    border-right: none;
+table,
+th,
+td {
+	border-left: none;
+	border-right: none;
 }
 
 .entities {
@@ -74,23 +76,71 @@ table, th, td {
 	gap: 20px;
 }
 
-a {
-    display: inline-block;
-    background-color: #333;
-    color: #fff;
-    font-size: 1.35em;
-    font-weight: 600;
-    text-decoration: none;
+a.entity-links {
+	display: inline-block;
+	background-color: #333;
+	color: #fff;
+	font-size: 1.35em;
+	font-weight: 600;
+	text-decoration: none;
 
-    width: 150px;
+	width: 150px;
 	padding: 20px;
-    line-height: 80px;
-    text-align: center;
+	line-height: 80px;
+	text-align: center;
 
-    transition: transform 0.3s ease, background-color 0.3s ease;
+	transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-a:hover {
-    transform: scale(1.1);
-    background-color: #555;
+a.entity-links:hover {
+	transform: scale(1.1);
+	background-color: #555;
+}
+
+/* actions below table */
+
+.table-actions {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+
+.insert-link {
+	display: inline-block;
+	background-color: #333;
+	color: #fff;
+	font-size: 0.9em;
+	font-weight: 600;
+	text-decoration: none;
+
+	padding: 10px 20px;
+	border-radius: 6px;
+
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.insert-link:hover {
+	transform: scale(1.05);
+	background-color: #555;
+}
+
+.btn-save {
+	background-color: #333;
+	color: #fff;
+	font-size: 0.9em;
+	font-weight: 600;
+
+	padding: 10px 20px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-save:hover {
+	transform: scale(1.05);
+	background-color: #555;
 }
