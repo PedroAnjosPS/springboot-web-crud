@@ -20,6 +20,7 @@
 					<th>Name</th>
 					<th>Description</th>
 					<th>Price ($)</th>
+					<th>Categories</th>
 				</tr>
 			</thead>
 
@@ -29,6 +30,14 @@
 					<td th:text="${product.name}"></td>
 					<td th:text="${product.description}"></td>
 					<td th:text="${product.price}"></td>
+					
+					<td>
+						<span th:each="cat, stat : ${product.categories}">
+							<span th:text="${cat.name}"></span>
+							<span th:if="${!stat.last}">,</span>
+						</span>
+					</td>
+					
 				</tr>
 			</tbody>
 		</table>
