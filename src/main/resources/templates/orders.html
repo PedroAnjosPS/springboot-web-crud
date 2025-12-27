@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Orders</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+	<h1>Order List</h1>
+
+	<div class="table-container">
+
+		<table>
+			</thead>
+			<tr>
+				<th>ID</th>
+				<th>Moment</th>
+				<th>Order Status</th>
+				<th>Client</th>
+				<th>Product IDs</th>
+				<th>Total ($)</th>
+			</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="order : ${orders}">
+					<td th:text="${order.id}"></td>
+					<td th:text="${#temporals.format(order.moment, 'dd/MM/yyyy HH:mm')}"></td>
+					<td th:text="${order.orderStatus}"></td>
+					<td th:text="${order.client.name}"></td>
+
+					<td>
+						<span th:each="item, iterStat : ${order.items}">
+							<span th:text="${item.product.id}"></span>
+							<span th:if="${!iterStat.last}">, </spa>
+							</span>
+					</td>
+
+					<td th:text="${order.total}"></td>
+
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+
+</html>

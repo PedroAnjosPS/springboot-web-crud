@@ -3,13 +3,13 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Products</title>
+	<title>Category</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
-	<h1>Product List</h1>
+	<h1>Category List</h1>
 
 	<div class="table-container">
 
@@ -18,17 +18,13 @@
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
-					<th>Description</th>
-					<th>Price ($)</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<tr th:each="product : ${products}">
-					<td th:text="${product.id}"></td>
-					<td th:text="${product.name}"></td>
-					<td th:text="${product.description}"></td>
-					<td th:text="${product.price}"></td>
+				<tr th:each="category : ${categories}">
+					<td th:text="${category.id}"></td>
+					<td th:text="${category.name}"></td>
 				</tr>
 			</tbody>
 		</table>
