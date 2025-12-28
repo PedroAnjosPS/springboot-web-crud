@@ -20,25 +20,63 @@
 					<th>Name</th>
 					<th>Email</th>
 					<th>Phone</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 
 			<tbody>
 
-				<!-- INSERTED USERS -->
 				<tr th:each="user : ${users}">
 					<td th:text="${user.id}"></td>
-					<td th:text="${user.name}"></td>
-					<td th:text="${user.email}"></td>
-					<td th:text="${user.phone}"></td>
+
+					<!-- NAME -->
+					<td>
+						<span th:if="${editId != user.id}" th:text="${user.name}"></span>
+						<input th:if="${editId == user.id}" type="text" name="name" th:value="${user.name}"
+							form="updateForm" />
+					</td>
+
+					<!-- EMAIL -->
+					<td>
+						<span th:if="${editId != user.id}" th:text="${user.email}"></span>
+						<input th:if="${editId == user.id}" type="email" name="email" th:value="${user.email}"
+							form="updateForm" />
+					</td>
+
+					<!-- PHONE -->
+					<td>
+						<span th:if="${editId != user.id}" th:text="${user.phone}"></span>
+						<input th:if="${editId == user.id}" type="text" name="phone" th:value="${user.phone}"
+							form="updateForm" />
+					</td>
+
+					<!-- ACTIONS -->
+					<td class="actions">
+						<a th:if="${editId != user.id}" th:href="@{/users/edit/{id}(id=${user.id})}"
+							class="icon edit">✏️</a>
+
+						<span th:if="${editId == user.id}">✏️</span>
+
+						<a href="#" class="icon delete">🗑️</a>
+					</td>
 				</tr>
 
-				<!-- CREATE ROW (inline) -->
 				<tr th:if="${showForm}">
 					<td>—</td>
-					<td><input form="createForm" type="text" name="name" required></td>
-					<td><input form="createForm" type="email" name="email" required></td>
-					<td><input form="createForm" type="text" name="phone" required></td>
+
+					<td>
+						<input type="text" name="name" placeholder="Name" form="createForm" required />
+					</td>
+
+					<td>
+						<input type="email" name="email" placeholder="Email" form="createForm" required />
+					</td>
+
+					<td>
+						<input type="text" name="phone" placeholder="Phone" form="createForm" required />
+					</td>
+
+					<td></td>
 				</tr>
 
 			</tbody>
@@ -47,11 +85,17 @@
 		<div class="table-actions">
 			<a th:href="@{/users/new}" class="insert-link">+ Add</a>
 
-			<form th:if="${showForm}" id="createForm"
-			      th:action="@{/users/create}" method="post">
+			<form th:if="${showForm}" id="createForm" th:action="@{/users/create}" method="post">
 				<button type="submit" class="btn-save">Save</button>
 			</form>
+
+			<form th:if="${editId != null}" th:id="updateForm" th:action="@{/users/update/{id}(id=${editId})}"
+				method="post">
+				<button type="submit" class="btn-save">Update</button>
+			</form>
+
 		</div>
+
 
 
 	</div>

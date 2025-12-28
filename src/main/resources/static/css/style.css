@@ -144,3 +144,23 @@ a.entity-links:hover {
 	transform: scale(1.05);
 	background-color: #555;
 }
+
+.actions {
+	text-align: center;
+}
+
+.icon {
+	margin: 0 5px;
+	cursor: pointer;
+	font-size: 1.1em;
+	text-decoration: none;
+}
+
+.icon.edit:hover {
+	transform: scale(1.2);
+}
+
+.icon.delete:hover {
+	transform: scale(1.2);
+	color: red;
+}
