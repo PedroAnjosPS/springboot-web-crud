@@ -57,7 +57,14 @@
 
 						<span th:if="${editId == user.id}">✏️</span>
 
-						<a href="#" class="icon delete">🗑️</a>
+						<form th:action="@{/users/delete/{id}(id=${user.id})}" 
+						      method="post" class="inline-form">
+
+							<button type="button" class="icon delete" th:attr="data-id=${user.id}">
+								🗑️
+							</button>
+
+						</form>
 					</td>
 				</tr>
 
@@ -96,9 +103,25 @@
 
 		</div>
 
-
-
 	</div>
+
+		
+	<div id="deleteModal" class="modal">
+	  <div class="modal-content">
+	    <h3>Confirm Deletion</h3>
+
+	    <p id="deleteMessage"></p>
+
+	    <div class="modal-actions">
+	      <button id="confirmDelete" class="btn-danger">Delete</button>
+	      <button id="cancelDelete" type="button" class="btn-secondary">Cancel</button>
+	    </div>
+	  </div>
+	</div>
+
+
+
+	<script th:src="@{/js/users.js}"></script>
 
 </body>
 

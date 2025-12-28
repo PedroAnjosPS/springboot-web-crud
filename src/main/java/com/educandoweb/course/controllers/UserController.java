@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.repositories.UserRepository;
@@ -23,7 +24,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	// INSERT
+	// SELECT
 	@GetMapping
 	public String listUsers(Model model) {
 		List<User> users = userRepository.findAll();
@@ -33,6 +34,7 @@ public class UserController {
 	    return "users";
 	}
 	
+	// INSERT
 	@GetMapping("/new") 
 	public String showCreateForm(Model model) {
 		model.addAttribute("users", userRepository.findAll());
@@ -57,6 +59,20 @@ public class UserController {
 	@PostMapping("/update/{id}")
 	public String updateUser(@PathVariable Long id, User user) {
 		userService.update(id, user);
+		return "redirect:/users";
+	}
+	
+	// DELETE
+	@PostMapping("/delete/{id}")
+	public String delete(@PathVariable Long id, RedirectAttributes ra) {
+		try {
+			userService.delete(id);
+			ra.addFlashAttribute("successMessage", "User successfully removed!");
+		}
+		catch (RuntimeException e) {
+			ra.addFlashAttribute("errorMessage", e.getMessage());
+		}
+		
 		return "redirect:/users";
 	}
 }
