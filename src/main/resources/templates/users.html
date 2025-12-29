@@ -9,7 +9,12 @@
 
 <body>
 
-	<h1>User List</h1>
+	<header class="page-header">
+		<a th:href="@{/}" class="home-link" title="Home">
+			<img th:src="@{/images/home.png}" alt="Home" class="home-icon">
+		</a>
+		<h1>User List</h1>
+	</header>
 
 	<div class="table-container">
 
@@ -33,21 +38,21 @@
 					<td>
 						<span th:if="${editId != user.id}" th:text="${user.name}"></span>
 						<input th:if="${editId == user.id}" type="text" name="name" th:value="${user.name}"
-							form="updateForm" />
+							maxlength="30" form="updateForm" />
 					</td>
 
 					<!-- EMAIL -->
 					<td>
 						<span th:if="${editId != user.id}" th:text="${user.email}"></span>
 						<input th:if="${editId == user.id}" type="email" name="email" th:value="${user.email}"
-							form="updateForm" />
+							maxlength="30" form="updateForm" />
 					</td>
 
 					<!-- PHONE -->
 					<td>
 						<span th:if="${editId != user.id}" th:text="${user.phone}"></span>
 						<input th:if="${editId == user.id}" type="text" name="phone" th:value="${user.phone}"
-							form="updateForm" />
+							maxlength="20" form="updateForm" />
 					</td>
 
 					<!-- ACTIONS -->
@@ -57,8 +62,7 @@
 
 						<span th:if="${editId == user.id}">✏️</span>
 
-						<form th:action="@{/users/delete/{id}(id=${user.id})}" 
-						      method="post" class="inline-form">
+						<form th:action="@{/users/delete/{id}(id=${user.id})}" method="post" class="inline-form">
 
 							<button type="button" class="icon delete" th:attr="data-id=${user.id}">
 								🗑️
@@ -105,19 +109,30 @@
 
 	</div>
 
-		
-	<div id="deleteModal" class="modal">
-	  <div class="modal-content">
-	    <h3>Confirm Deletion</h3>
 
-	    <p id="deleteMessage"></p>
+	<!-- DELETE MODAL -->
+	<div id="deleteModal" class="modal" th:classappend="${deleteError != null} ? 'show' : ''">
 
-	    <div class="modal-actions">
-	      <button id="confirmDelete" class="btn-danger">Delete</button>
-	      <button id="cancelDelete" type="button" class="btn-secondary">Cancel</button>
-	    </div>
-	  </div>
+		<div class="modal-content">
+
+			<h3 th:text="${deleteError != null} ? 'Deletion Error' : 'Confirm Deletion'"></h3>
+
+			<p id="deleteMessage" th:text="${deleteError != null} ? ${deleteError} : ''">
+			</p>
+
+			<div class="modal-actions">
+				<button id="confirmDelete" class="btn-danger" th:classappend="${deleteError != null} ? 'hidden' : ''">
+					Delete
+				</button>
+
+				<button id="cancelDelete" type="button" class="btn-secondary">
+					Cancel
+				</button>
+			</div>
+
+		</div>
 	</div>
+
 
 
 

@@ -1,32 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	const modal = document.getElementById("deleteModal");
-	const confirmBtn = document.getElementById("confirmDelete");
-	const cancelBtn = document.getElementById("cancelDelete");
-	const message = document.getElementById("deleteMessage");
+    const modal = document.getElementById("deleteModal");
+    const confirmBtn = document.getElementById("confirmDelete");
+    const cancelBtn = document.getElementById("cancelDelete");
+    const message = document.getElementById("deleteMessage");
+    const title = modal.querySelector("h3");
 
-	let formToSubmit = null;
+    let formToSubmit = null;
 
-	document.querySelectorAll(".icon.delete").forEach(button => {
-		button.addEventListener("click", () => {
+    document.querySelectorAll(".icon.delete").forEach(button => {
+        button.addEventListener("click", () => {
 
-			formToSubmit = button.closest("form");
+            formToSubmit = button.closest("form");
+            const userId = button.getAttribute("data-id");
 
-			const userId = button.getAttribute("data-id");
-			message.textContent = `Do you really want to delete user #${userId}?`;
+            title.textContent = "Confirm Deletion";
+            message.textContent = `Do you really want to delete user #${userId}?`;
 
-			modal.style.display = "flex";
-		});
-	});
+            if (confirmBtn) {
+                confirmBtn.classList.remove("hidden"); 
+            }
 
-	confirmBtn.addEventListener("click", () => {
-		if (formToSubmit) {
-			formToSubmit.submit();
-		}
-	});
+            modal.classList.add("show");
+        });
+    });
 
-	cancelBtn.addEventListener("click", () => {
-		modal.style.display = "none";
-		formToSubmit = null;
-	});
+    if (confirmBtn) {
+        confirmBtn.addEventListener("click", () => {
+            if (formToSubmit) {
+                formToSubmit.submit();
+            }
+        });
+    }
+	
+    cancelBtn.addEventListener("click", () => {
+        closeModal();
+    });
+
+    function closeModal() {
+        modal.classList.remove("show");
+        formToSubmit = null;
+        message.textContent = "";
+    }
 });

@@ -14,6 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.repositories.UserRepository;
 import com.educandoweb.course.services.UserService;
+import com.educandoweb.course.services.exceptions.DatabaseException;
+import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
 
 @Controller
 @RequestMapping("/users")
@@ -69,8 +71,11 @@ public class UserController {
 			userService.delete(id);
 			ra.addFlashAttribute("successMessage", "User successfully removed!");
 		}
-		catch (RuntimeException e) {
-			ra.addFlashAttribute("errorMessage", e.getMessage());
+		catch (DatabaseException e) {
+			ra.addFlashAttribute("deleteError", e.getMessage());
+		}
+		catch (ResourceNotFoundException e) {
+			ra.addFlashAttribute("deleteError", "User not found.");
 		}
 		
 		return "redirect:/users";

@@ -12,13 +12,35 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
+.page-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
 	background-color: #333;
-	text-align: center;
 	padding: 20px;
 	margin-bottom: 20px;
-	font-size: 2em;
 }
+
+.page-header h1 {
+	margin: 0;
+	font-size: 2em;
+	color: #fff;
+}
+
+.home-link {
+	position: absolute;
+	left: 20px;
+	font-size: 1.6em;
+	text-decoration: none;
+	color: #fff;
+	transition: transform 0.2s ease;
+}
+
+.home-link:hover {
+	transform: scale(1.2);
+}
+
 
 .table-container {
 	width: 95%;
@@ -105,7 +127,9 @@ a.entity-links:hover {
 	justify-content: center;
 	align-items: center;
 	gap: 15px;
+	flex-wrap: wrap;
 }
+
 
 .insert-link {
 	display: inline-block;
@@ -185,6 +209,15 @@ a.entity-links:hover {
     z-index: 1000;
 }
 
+.modal.show {
+	display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+
 .modal-content {
     background: #ffffff;
     padding: 20px 24px;
@@ -231,3 +264,32 @@ a.entity-links:hover {
     border-radius: 4px;
     cursor: pointer;
 }
+
+/* MediaQuery for cellphone */
+@media (max-width: 768px) {
+
+	table {
+		font-size: 0.85rem;
+	}
+
+	th, td {
+		padding: 8px;
+	}
+
+	.actions {
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.icon {
+		font-size: 1.2em;
+	}
+}
+
+@media (max-width: 768px) {
+	.table-actions {
+		flex-direction: column;
+		gap: 10px;
+	}
+}
+
