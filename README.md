@@ -1,4 +1,4 @@
-# Spring Boot Order System
+# Spring Boot Web CRUD
 
 Aplicação desenvolvida em **Java com Spring Boot**, com foco em **aprendizado prático**, arquitetura em camadas e integração entre **API REST** e **aplicação Web (MVC)**.
 
