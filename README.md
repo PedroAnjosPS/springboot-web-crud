@@ -176,6 +176,6 @@ A aplicação segue uma **arquitetura em camadas bem definida**, conforme boas p
 ## 🚀 Como Executar o Projeto Localmente
 
 ```bash
-git clone https://github.com/seu-usuario/springboot-order-system.git
+git clone https://github.com/seu-usuario/springboot-web-crud.git
 cd springboot-order-system
 ./mvnw spring-boot:run
