@@ -177,5 +177,5 @@ A aplicação segue uma **arquitetura em camadas bem definida**, conforme boas p
 
 ```bash
 git clone https://github.com/seu-usuario/springboot-web-crud.git
-cd springboot-order-system
+cd springboot-web-crud
 ./mvnw spring-boot:run
